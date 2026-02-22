@@ -13,6 +13,10 @@ module.exports = function (eleventyConfig) {
     return DateTime.fromJSDate(dateObj, { zone: "Asia/Seoul" }).toISODate();
   });
 
+  eleventyConfig.addFilter("year", (dateObj) => {
+    return DateTime.fromJSDate(dateObj, { zone: "Asia/Seoul" }).toFormat("yyyy");
+  });
+
   eleventyConfig.addCollection("issues", function (collectionApi) {
     return collectionApi
       .getFilteredByGlob("src/content/issues/*.md")

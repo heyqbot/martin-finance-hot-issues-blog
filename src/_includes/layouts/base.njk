@@ -3,32 +3,151 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>{% if title %}{{ title }} · {% endif %}Financial Hot Issues Daily</title>
-  <meta name="description" content="마틴을 위한 글로벌 금융·재테크 핫이슈 분석 블로그" />
+  <title>{% if title %}{{ title }} · {% endif %}{{ site.title }}</title>
+  <meta name="description" content="{{ site.description }}" />
+  <meta name="keywords" content="금융, 재테크, 증시, 투자 인사이트, 데일리 뉴스" />
+  <link rel="canonical" href="{{ site.url }}" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <meta property="og:title" content="{{ site.title }}" />
+  <meta property="og:description" content="{{ site.description }}" />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="{{ site.url }}" />
+  <meta property="og:site_name" content="{{ site.title }}" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:site" content="@martin" />
   <style>
-    :root { font-family: 'Inter', system-ui, sans-serif; background-color: #060b1a; color:#f6f6f6; }
-    body { margin:0; min-height:100vh; background: radial-gradient(circle at top right, rgba(141, 99, 255,0.25), transparent 55%), #030513; color:#e8ebf3; }
-    main { padding: 32px clamp(16px, 3vw, 64px); max-width: 960px; margin: 0 auto; }
-    a { color:#9ddfff; text-decoration:none; }
-    header { border-bottom:1px solid rgba(255,255,255,0.1); margin-bottom:32px; }
-    footer { margin-top:64px; font-size:0.85rem; color:rgba(255,255,255,0.6); }
-    .issue-card { border:1px solid rgba(255,255,255,0.1); padding:24px; border-radius: 18px; margin-bottom: 24px; background: rgba(8,11,26,0.8); box-shadow: 0 20px 60px rgba(0,0,0,0.35); }
-    .issue-card h3 { margin-top:0; font-size:1.35rem; }
-    .tags { display:flex; flex-wrap:wrap; gap:8px; margin-top:8px; }
+    :root {
+      font-family: 'Inter', system-ui, sans-serif;
+      background-color: #030513;
+      color: #f1f3ff;
+    }
+    body {
+      margin: 0;
+      min-height: 100vh;
+      background: radial-gradient(circle at top right, rgba(19, 110, 210, 0.25), transparent 50%), #01030b;
+    }
+    .app-shell {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 32px 16px 48px;
+    }
+    header {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      margin-bottom: 32px;
+    }
+    header h1 {
+      margin: 0;
+      font-size: clamp(2rem, 3vw, 2.6rem);
+    }
+    header .meta-tagline {
+      color: rgba(255,255,255,0.7);
+      font-size: 0.95rem;
+    }
+    nav {
+      display: flex;
+      gap: 16px;
+      font-size: 0.9rem;
+    }
+    nav a {
+      color: #9ddfff;
+    }
+    .layout-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 3fr) minmax(260px, 1fr);
+      gap: 32px;
+    }
+    section{ }
+    .issue-card {
+      border: 1px solid rgba(255,255,255,0.15);
+      padding: 28px;
+      border-radius: 20px;
+      margin-bottom: 28px;
+      background: rgba(6, 10, 27, 0.8);
+      box-shadow: 0 20px 60px rgba(0,0,0,0.35);
+    }
+    .issue-card h3 { margin-top: 0; font-size: 1.6rem; }
+    .issue-card p { line-height: 1.7; }
+    .issue-meta, .issue-source { display: flex; justify-content: space-between; font-size: 0.85rem; color: rgba(255,255,255,0.65); flex-wrap: wrap; gap: 12px; }
+    .tags { display:flex; flex-wrap:wrap; gap:8px; margin-top:12px; }
     .tag { font-size:0.8rem; padding:4px 10px; border-radius:999px; background: rgba(255,255,255,0.08); }
-    .issue-meta { display:flex; justify-content:space-between; font-size:0.85rem; color:rgba(255,255,255,0.65); margin-bottom:12px; }
+    .ad-slot {
+      border: 1px solid rgba(255,255,255,0.12);
+      border-radius: 16px;
+      padding: 20px;
+      background: rgba(255,255,255,0.02);
+      color: #98c6ff;
+      margin-bottom: 24px;
+    }
+    .ad-slot span { display: block; font-size: 0.8rem; margin-bottom: 10px; }
+    aside ul { padding-left: 20px; }
+    footer { margin-top: 60px; border-top: 1px solid rgba(255,255,255,0.1); padding-top: 20px; font-size: 0.8rem; color: rgba(255,255,255,0.6); display:flex; flex-wrap:wrap; gap:12px; justify-content:space-between; }
+    .privacy-links a { color: rgba(255,255,255,0.7); }
+    @media (max-width: 900px) {
+      .layout-grid { grid-template-columns: 1fr; }
+    }
   </style>
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "NewsMediaOrganization",
+      "name": "{{ site.title }}",
+      "url": "{{ site.url }}",
+      "description": "{{ site.description }}",
+      "publisher": {
+        "@type": "Organization",
+        "name": "{{ site.title }}"
+      }
+    }
+  </script>
 </head>
 <body>
-  <main>
-    {{ content | safe }}
+  <div class="app-shell">
+    <header>
+      <div>
+        <h1>{{ site.title }}</h1>
+        <p class="meta-tagline">{{ site.description }}</p>
+      </div>
+      <nav aria-label="Quick links">
+        <a href="{{ site.url }}">홈</a>
+        <a href="mailto:martin@example.com">문의</a>
+        <a href="{{ site.url }}/privacy">프라이버시</a>
+      </nav>
+    </header>
+    <div class="layout-grid">
+      <div>
+        {{ content | safe }}
+      </div>
+      <aside>
+        <div class="ad-slot" aria-label="AdSense preview">
+          <span>광고 슬롯 (Google AdSense 준비)</span>
+          <strong>AdSense 300x250</strong>
+          <p>위치: 사이드바 상단 · 목적: 수익화 및 뉴스레터 CTA</p>
+        </div>
+        <section aria-labelledby="why-updated">
+          <h3 id="why-updated">Daily signal tracker</h3>
+          <ul>
+            <li>매일 오전 08:30(KST) 주요 글로벌 데이터 집계</li>
+            <li>핵심 지표: 금리, 통화, 원자재, 기업 실적, 정책</li>
+            <li>실시간 알림: Cloudflare build webhook → Telegram</li>
+          </ul>
+        </section>
+      </aside>
+    </div>
     <footer>
-      <p>Cloudflare Pages + Eleventy · 매일 글로벌 금융 핫이슈 5개 요약</p>
-      <p>마틴을 위한 자동화된 리서치/작성 워크플로</p>
+      <div>
+        © {{ today.now | year }} {{ site.author }} · Cloudflare Pages · Eleventy
+      </div>
+      <div class="privacy-links">
+        <a href="{{ site.url }}/privacy">Privacy</a>
+        <a href="{{ site.url }}/disclaimer">Disclaimer</a>
+      </div>
     </footer>
-  </main>
+  </div>
 </body>
 </html>
