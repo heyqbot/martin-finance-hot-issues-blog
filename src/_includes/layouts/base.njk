@@ -9,7 +9,7 @@
   <link rel="canonical" href="{{ site.url }}" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic:wght@400;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
   <meta property="og:title" content="{{ site.title }}" />
   <meta property="og:description" content="{{ site.description }}" />
   <meta property="og:type" content="website" />
@@ -19,116 +19,130 @@
   <meta name="twitter:site" content="@martin" />
   <style>
     :root {
-      font-family: 'Inter', 'Space Grotesk', system-ui, sans-serif;
-      background-color: #030513;
-      color: #f5f6ff;
+      font-family: 'Nanum Gothic', 'Inter', system-ui, sans-serif;
+      background-color: #f7f5ef;
+      color: #0c1024;
       scroll-behavior: smooth;
     }
     body {
       margin: 0;
       min-height: 100vh;
-      background: linear-gradient(180deg, #040712 0%, #02030a 45%, #041125 100%);
+      background: #f7f5ef;
     }
     .app-shell {
-      max-width: 1200px;
+      max-width: 1120px;
       margin: 0 auto;
-      padding: clamp(24px, 3vw, 40px) clamp(16px, 4vw, 64px) 56px;
+      padding: 40px 24px 60px;
     }
     header {
       display: flex;
       flex-wrap: wrap;
       align-items: center;
       justify-content: space-between;
-      gap: 12px;
       margin-bottom: 28px;
-    }
-    .tagline {
-      margin-top: 4px;
-      color: rgba(255,255,255,0.6);
-      font-size: 0.95rem;
+      gap: 16px;
     }
     header h1 {
       margin: 0;
-      font-size: clamp(2rem, 3vw, 2.8rem);
-      line-height: 1.1;
+      font-size: clamp(2.2rem, 3vw, 2.8rem);
+      letter-spacing: -0.02em;
+    }
+    .tagline {
+      color: rgba(12,16,36,0.65);
+      font-size: 0.95rem;
+      margin-top: 6px;
     }
     nav {
       display: flex;
-      gap: 18px;
+      gap: 20px;
       font-size: 0.95rem;
     }
     nav a {
-      color: #91b9ff;
+      color: #0c1024;
+      font-weight: 600;
       text-decoration: none;
     }
+    nav a:hover { text-decoration: underline; }
     .hero {
-      padding: 24px;
-      border-radius: 24px;
-      background: radial-gradient(circle at top, rgba(144, 207, 255, 0.12), transparent 60%), rgba(255,255,255,0.03);
-      border: 1px solid rgba(255,255,255,0.06);
+      background: #ffffff;
+      border-radius: 28px;
+      padding: 32px;
+      border: 1px solid rgba(12,16,36,0.08);
+      box-shadow: 0 20px 60px rgba(12,16,36,0.08);
       margin-bottom: 32px;
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-      gap: 24px;
-    }
-    .hero div {
-      font-size: 0.95rem;
-      color: rgba(255,255,255,0.75);
+      gap: 18px;
     }
     .hero strong {
       display: block;
-      font-size: 1.35rem;
-      color: #ffffff;
-      margin-bottom: 6px;
+      font-size: 1.2rem;
+      margin-bottom: 8px;
+      color: #0c1024;
+    }
+    .hero p {
+      margin: 0;
+      color: rgba(12,16,36,0.7);
+      line-height: 1.6;
     }
     .layout-grid {
       display: grid;
-      grid-template-columns: minmax(0, 3fr) minmax(280px, 1fr);
-      gap: clamp(24px, 3vw, 40px);
+      grid-template-columns: minmax(0, 3fr) minmax(260px, 1fr);
+      gap: 36px;
     }
     .issue-card {
-      border: 1px solid rgba(255,255,255,0.12);
-      padding: clamp(20px, 2vw, 32px);
-      border-radius: 26px;
+      background: #ffffff;
+      border-radius: 28px;
+      padding: 28px;
       margin-bottom: 28px;
-      background: rgba(12, 17, 35, 0.85);
-      box-shadow: 0 28px 80px rgba(3,5,13,0.55);
+      border: 1px solid rgba(12,16,36,0.08);
       position: relative;
       overflow: hidden;
+      box-shadow: 0 18px 40px rgba(12,16,36,0.08);
     }
-    .issue-card::after {
-      content: '';
-      position: absolute;
-      inset: 0;
-      border-radius: 26px;
-      background: linear-gradient(145deg, rgba(255,255,255,0.05), transparent 60%);
-      pointer-events: none;
+    .issue-card h3 { margin-top: 12px; font-size: 1.7rem; }
+    .issue-card p { line-height: 1.75; color: rgba(12,16,36,0.82); }
+    .issue-meta, .issue-source {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      gap: 10px;
+      font-size: 0.85rem;
+      color: rgba(12,16,36,0.55);
     }
-    .issue-card-content {
-      position: relative;
-      z-index: 1;
+    .tags { display:flex; flex-wrap:wrap; gap:10px; margin-top:14px; }
+    .tag {
+      background: rgba(12,16,36,0.08);
+      border-radius: 999px;
+      padding: 6px 14px;
+      font-size: 0.8rem;
+      color: #1a213b;
     }
-    .issue-card h3 { margin-top: 0; font-size: clamp(1.5rem, 2vw, 1.9rem); line-height: 1.3; }
-    .issue-card p { line-height: 1.7; color: rgba(255,255,255,0.85); }
-    .issue-meta, .issue-source { display: flex; justify-content: space-between; font-size: 0.85rem; color: rgba(255,255,255,0.65); flex-wrap: wrap; gap: 12px; }
-    .tags { display:flex; flex-wrap:wrap; gap:10px; margin-top:18px; }
-    .tag { font-size:0.8rem; padding:6px 12px; border-radius:999px; background: rgba(255,255,255,0.08); }
     .ad-slot {
-      border: 1px solid rgba(255,255,255,0.15);
-      border-radius: 20px;
-      padding: 22px;
-      background: rgba(255,255,255,0.02);
-      color: #a8c9ff;
-      margin-bottom: 26px;
+      margin-bottom: 24px;
+      background: #ffffff;
+      border-radius: 18px;
+      border: 1px solid rgba(12,16,36,0.08);
+      padding: 18px;
+      box-shadow: 0 14px 34px rgba(12,16,36,0.08);
     }
-    .ad-slot span { display: block; font-size: 0.8rem; margin-bottom: 8px; }
-    .ad-slot strong { font-size: 1rem; color: #ffffff; }
-    aside ul { padding-left: 20px; color: rgba(255,255,255,0.75); }
-    footer { margin-top: 60px; border-top: 1px solid rgba(255,255,255,0.1); padding-top: 20px; font-size: 0.8rem; color: rgba(255,255,255,0.6); display:flex; flex-wrap:wrap; gap:12px; justify-content:space-between; }
-    .privacy-links a { color: rgba(255,255,255,0.7); }
+    .ad-slot strong { font-weight: 600; }
+    .privacy-links a { color: #565b67; text-decoration: none; }
+    footer {
+      margin-top: 64px;
+      padding-top: 24px;
+      border-top: 1px solid rgba(12,16,36,0.12);
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      justify-content: space-between;
+      font-size: 0.85rem;
+      color: rgba(12,16,36,0.6);
+    }
     @media (max-width: 960px) {
       .layout-grid { grid-template-columns: 1fr; }
       nav { justify-content: flex-start; }
+      header { flex-direction: column; }
     }
   </style>
   <script type="application/ld+json">
@@ -160,16 +174,16 @@
     </header>
     <div class="hero">
       <div>
-        <strong>Daily Market Radar</strong>
-        <p>매일 오전 6시(서울 기준) 글로벌 금융 데이터를 정량/정성적으로 분석해 한 장으로 정리합니다.</p>
+        <strong>Daily Market Digest</strong>
+        <p>매일 새벽 청정한 관점으로 정리하는 글로벌 금리 · 통화 · 기술 흐름.</p>
       </div>
       <div>
-        <strong>AdSense-ready layout</strong>
-        <p>광고는 메인 읽기 흐름을 방해하지 않도록 사이드바와 콘텐츠 사이에 자연스럽게 배치합니다.</p>
+        <strong>AdSense-ready</strong>
+        <p>사이드바 광고만으로도 방해가 없게 설계해, 수익화와 콘텐츠 집중을 동시에 지향합니다.</p>
       </div>
       <div>
-        <strong>SEO optimized</strong>
-        <p>OpenGraph, Schema, canonical 등 검색 엔진 최적화 요소를 내장했습니다.</p>
+        <strong>Insight-first</strong>
+        <p>핵심 요약 → 시장 영향 → 투자자 체크리스트로 구조화해 빠른 해석이 가능합니다.</p>
       </div>
     </div>
     <div class="layout-grid">
@@ -177,17 +191,17 @@
         {{ content | safe }}
       </main>
       <aside>
-        <div class="ad-slot" aria-label="AdSense preview">
+        <div class="ad-slot" aria-label="AdSense slot">
           <span>광고 슬롯</span>
-          <strong>AdSense 300x250</strong>
-          <p>프리미엄 사이드바 공간에 숨김 없이 노출. 방문자가 글을 읽는 데 방해되지 않도록 디자인되어 있습니다.</p>
+          <strong>300x250·Responsive</strong>
+          <p>네이버 블로그 스타일의 미니멀한 트래픽에도 어울리는 위치입니다.</p>
         </div>
         <section aria-labelledby="why-updated">
           <h3 id="why-updated">Daily signal tracker</h3>
           <ul>
-            <li>오전 06:00 KST 글로벌 종합 리포트(금리·원자재·정책)</li>
-            <li>Tagging system으로 빠른 분류 및 검색</li>
-            <li>Cloudflare Pages 빌드 로그를 기반으로 자동 알림</li>
+            <li>매일 오전 06:00 KST 글로벌 데이터 체크</li>
+            <li>금리 · 정책 · 원자재 · 기업 실적 테마를 태그로 분류</li>
+            <li>Cloudflare build webhook → 자동 알림</li>
           </ul>
         </section>
       </aside>
