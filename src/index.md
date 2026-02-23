@@ -12,26 +12,26 @@ title: "Daily Hot Issues"
   <h2>오늘의 핫이슈</h2>
   {% for issue in collections.issues %}
   <article class="issue-card" aria-labelledby="issue-{{ issue.fileSlug }}">
-    <div class="issue-meta">
-      <span>{{ issue.data.issueRank }}위</span>
-      <span>{{ issue.data.date | readableDate }}</span>
-    </div>
+    <header class="issue-header">
+      <span class="issue-rank">{{ issue.data.issueRank }}위</span>
+      <span class="issue-date">{{ issue.data.date | readableDate }}</span>
+    </header>
     <h3 id="issue-{{ issue.fileSlug }}">{{ issue.data.title }}</h3>
-    <p>{{ issue.data.summary }}</p>
+    <p class="issue-summary">{{ issue.data.summary }}</p>
     <div class="tags">
       {% for tag in issue.data.tags %}
         <span class="tag">#{{ tag }}</span>
       {% endfor %}
     </div>
-    <div>
+    <div class="issue-body">
       {{ issue.templateContent | safe }}
     </div>
     {% if issue.data.source %}
-    <p class="issue-source">출처:
+    <footer class="issue-source">출처:
       {% for src in issue.data.source %}
         <a href="{{ src }}" target="_blank" rel="noreferrer">{{ src }}</a>{% if loop.last %}{% else %}, {% endif %}
       {% endfor %}
-    </p>
+    </footer>
     {% endif %}
   </article>
   {% endfor %}
