@@ -1,9 +1,13 @@
 const { DateTime } = require("luxon");
+const MarkdownIt = require("markdown-it");
 
 module.exports = function (eleventyConfig) {
   eleventyConfig.setUseGitIgnore(false);
 
   eleventyConfig.addPassthroughCopy({ "src/assets": "assets" });
+
+  const md = new MarkdownIt({ html: true, linkify: true });
+  eleventyConfig.addFilter("markdown", (content) => md.render(content || ""));
 
   eleventyConfig.addFilter("readableDate", (dateObj) => {
     return DateTime.fromJSDate(dateObj, { zone: "Asia/Seoul" }).toFormat("yyyy년 LLL dd일");

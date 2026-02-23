@@ -24,7 +24,7 @@ title: "Daily Hot Issues"
       {% endfor %}
     </div>
     <div class="issue-body">
-      {{ issue.templateContent | safe }}
+      {{ issue.templateContent | markdown | safe }}
     </div>
     {% if issue.data.source %}
     <footer class="issue-source">출처:
