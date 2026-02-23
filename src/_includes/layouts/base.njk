@@ -73,29 +73,68 @@
     }
     .hero {
       margin-top: 32px;
-      background: #f4f0ea;
-      border-radius: 20px;
-      padding: 28px;
-      border: 1px solid rgba(17,17,17,0.08);
-      box-shadow: 0 20px 50px rgba(0,0,0,0.05);
+      background: #fdf9f2;
+      border-radius: 24px;
+      padding: 32px;
+      border: 1px solid rgba(0,0,0,0.08);
+      box-shadow: 0 22px 60px rgba(0,0,0,0.06);
       display: flex;
       justify-content: space-between;
       gap: 18px;
       flex-wrap: wrap;
     }
-    .hero-rating {
+    .hero-content,
+    .hero-info {
       flex: 1;
-      min-width: 220px;
+      min-width: 260px;
     }
-    .hero-rating strong {
-      display: block;
-      font-size: 1.1rem;
+    .hero-label {
+      text-transform: uppercase;
+      letter-spacing: 0.2em;
+      font-size: 0.65rem;
+      color: rgba(17,17,17,0.6);
       margin-bottom: 8px;
     }
-    .hero-rating p {
+    .hero h1 {
+      margin: 0;
+      font-size: clamp(1.8rem, 2.5vw, 2.4rem);
+      color: #0e1225;
+    }
+    .hero-description {
+      color: rgba(17,17,17,0.75);
+      line-height: 1.7;
+      margin: 12px 0;
+    }
+    .hero-meta {
+      font-size: 0.9rem;
+      color: rgba(17,17,17,0.6);
+    }
+    .hero-info p {
+      margin: 0;
+      color: rgba(17,17,17,0.7);
+      line-height: 1.6;
+    }
+    .update-banner {
+      margin-top: 20px;
+      background: #ffffff;
+      border-radius: 20px;
+      padding: 24px 32px;
+      border: 1px solid rgba(0,0,0,0.06);
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 18px;
+      box-shadow: 0 12px 30px rgba(0,0,0,0.05);
+    }
+    .update-banner strong {
+      display: block;
+      font-size: 1rem;
+      margin-bottom: 6px;
+      color: #0e1225;
+    }
+    .update-banner p {
       margin: 0;
       color: rgba(17,17,17,0.65);
-      line-height: 1.6;
+      line-height: 1.7;
     }
     .layout-grid {
       margin-top: 32px;
@@ -225,14 +264,24 @@
       </nav>
     </header>
     <section class="hero" aria-label="Hero spotlight">
-      <div class="hero-rating">
-        <strong>Focus on what's moving markets</strong>
-        <p>Think-note 스타일을 참고해 간결한 타이틀 + 핵심 문장 위주로 배치했습니다. 매일 오전 06:00(KST)에 업데이트하며, 핵심 요약/시장 영향/체크리스트로 구성됩니다.</p>
-        <p class="hero-meta">업데이트: {{ today.now | readableDate }}</p>
+      <div class="hero-content">
+        <p class="hero-label">Daily Financial Hot Issues</p>
+        <h1>핫한 글로벌 금융 흐름을 한 장으로</h1>
+        <p class="hero-description">매일 오전 06:00 KST 글로벌 뉴스 가운데 가장 의미 있는 5건을 엄선해 핵심 요약, 시장 영향, 투자자 체크리스트로 정리합니다.</p>
+        <p class="hero-meta">최근 업데이트: {{ today.now | readableDate }}</p>
       </div>
-      <div class="hero-rating">
-        <strong>AdSense friendly</strong>
-        <p>사이드바 광고는 주요 텍스트 영역과 분리되고, 광고 슬롯과 정보 블록 간격을 넉넉하게 두어 콘텐츠 집중을 방해하지 않습니다.</p>
+      <div class="hero-info">
+        <p>Think-note·redbirdstock 스타일을 참고한 심플 카드 레이아웃과, AdSense 배너와 정보 블록을 분리한 구성으로 콘텐츠 집중도를 유지합니다.</p>
+      </div>
+    </section>
+    <section class="update-banner" aria-label="Summary">
+      <div>
+        <strong>Quick snapshot</strong>
+        <p>핵심 이슈 5개를 한 번에 전달하며, 모든 포스트에는 출처/태그/체크리스트가 포함되어 WHO, WHAT, WHY를 명확히 합니다.</p>
+      </div>
+      <div>
+        <strong>AdSense-ready</strong>
+        <p>광고 슬롯은 사이드바 상단에 고정해 콘텐츠 흐름을 방해하지 않도록 구성했습니다.</p>
       </div>
     </section>
     <div class="layout-grid">
